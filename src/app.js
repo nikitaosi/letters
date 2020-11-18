@@ -10,6 +10,7 @@ import Loader from './components/Loader';
 import * as API from './shared/http';
 import Ad from './components/ad/Ad';
 import Post from './components/post/Post';
+import CreatePost from './components/post/Create';
 import Welcome from './components/welcome/Welcome';
 
 /**
@@ -49,8 +50,8 @@ class App extends Component {
                 return res.json().then(posts => {
                     const links = parseLinkHeader(res.headers.get('Link'));
                     if (links.next) {
-                        this.setState(() => ({
-                            posts: orderBy(this.state.posts.concat(posts), 'date', 'desc'),
+                        this.setState(prevState => ({
+                            posts: orderBy(prevState.posts.concat(posts), 'date', 'desc'),
                             endpoint: links.next.url,
                         }));
                     }; //#TODO write handling of empty page
@@ -79,6 +80,7 @@ class App extends Component {
                     <div className="home">
                         {/* <Welcome key="welcome" /> */}
                         <div>
+                        <CreatePost onSubmit={this.createNewPost} />
                             {this.state.posts.length && (
                                 <div className="posts">
                                     {this.state.posts.map(({ id }) => {
