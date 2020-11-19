@@ -44,6 +44,7 @@ class App extends Component {
             error: err,
         }));
     }
+
     getPosts() {
         API.fetchPosts(this.state.endpoint)
             .then(res => {
@@ -61,6 +62,23 @@ class App extends Component {
                 this.setState(() => ({ error: err }));
             });
     }
+
+    createNewPost(post) {
+        return API.createPost(post)
+            .then(res => res.json())
+            .then(newPost => {
+                this.setState(prevState => {
+                    return {
+                        posts: orderBy(prevState.posts.concat(newPost), 
+                            'date', 'desc')
+                    };
+                });
+            })
+            .catch(err => {
+                this.setState(() => ({ error: err }));
+            });
+    }
+
     render() {
         if (this.state.error) {
             return (
