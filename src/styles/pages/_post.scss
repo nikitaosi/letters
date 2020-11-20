@@ -1,12 +1,19 @@
 .single-post {
-    display: grid;
-    grid-gap: 10px;
-    grid-template-columns: [left] 20vw [center] 50vw [right] 20vw;
-    justify-content: center;
-    & > div {
-        margin-top: 10px;
-    }
-    & > .back {
-        text-align: right;
-    }
+
+    display: block;
+    width: 70%;
+    margin: 0 auto;
+  // & > div {
+    //     margin-top: 10px;
+    // }
+    // display: grid;
+    // grid-gap: 10px;
+    // grid-template-columns: [left] 20vw [center] 50vw [right] 20vw;
+    // justify-content: center;
+    // & > div {
+    //     margin-top: 10px;
+    // }
+    // & > .back {
+    //     text-align: right;
+    // }
 }
