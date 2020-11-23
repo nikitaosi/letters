@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { logUserOut } from './backend/auth';
 import ErrorMessage from './components/error/Error';
 import Nav from './components/nav/navbar';
 import Loader from './components/Loader';
@@ -16,23 +17,19 @@ class App extends Component {
         super(props);
         this.state = {
             error: null,
-            loading: false,
+            loading: false
         };
     }
     static propTypes = {
-        children: PropTypes.node,
+        children: PropTypes.node
     };
-
     componentDidCatch(err, info) {
         console.error(err);
         console.error(info);
         this.setState(() => ({
-            error: err,
+            error: err
         }));
     }
-
-    
-
     render() {
         if (this.state.error) {
             return (
@@ -43,16 +40,15 @@ class App extends Component {
         }
         return (
             <div className="app">
-                <Nav user={this.props.user} />
+                <Nav handleLogout={() => logUserOut()} user={this.props.user} />
                 {this.state.loading ? (
                     <div className="loading">
                         <Loader />
                     </div>
                 ) : (
-                    
-                this.props.children
+                    this.props.children
                 )}
-             </div>
+            </div>
         );
     }
 }

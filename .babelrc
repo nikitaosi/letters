@@ -4,6 +4,14 @@
             "presets": ["react-app", "env"],
             "plugins": ["transform-class-properties"]
         },
+        "test": {
+          "presets": ["env", "react-app"],
+          "plugins": ["transform-class-properties"],
+          "only": [
+            "./**/*.js",
+            "node_modules/jest-runtime"
+          ]
+      },
         "production": {
             "presets": [
                 "react-app",

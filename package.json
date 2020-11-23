@@ -48,6 +48,12 @@
             "raf/polyfill",
             "./test/setup.js"
         ],
+        "transform": {
+          "^.+\\.js?$": "babel-jest"
+        },
+        "transformIgnorePatterns": [
+          "!node_modules/react-runtime"
+        ],
         "globals": {
             "__DEV__": true,
             "NODE_ENV": "test",
@@ -100,6 +106,8 @@
         "uuid": "3.1.0"
     },
     "devDependencies": {
+        "@babel/core": "^7.12.3",
+        "@babel/preset-env": "^7.12.1",
         "autoprefixer": "^7.2.2",
         "babel-eslint": "^8.0.3",
         "babel-jest": "^21.2.0",
