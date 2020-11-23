@@ -62,8 +62,8 @@ export default class DisplayMap extends Component {
 
     ensureMapExists() {
         if (this.state.mapLoaded) return;
-        this.map = this.L.mapbox.map(this.mapNode)
-            .addLayer(this.L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
+        this.map = this.L.mapbox.map(this.mapNode);
+        this.map.addLayer(this.L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
         this.map.setView(this.L.latLng(this.state.location.lat,
             this.state.location.lng), 12);
         this.addMarker(this.state.location.lat, this.state.location.lng);

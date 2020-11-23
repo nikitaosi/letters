@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Filter from 'bad-words'
 import classnames from "classnames";
-
 import DisplayMap from "../map/DisplayMap";
 import LocationTypeAhead from "../map/LocationTypeAhead";
 
-import Filter from 'bad-words'
-
-const filter = new Filter();
-
 class CreatePost extends Component {
-    static propTypes = {        
-    }
+    // static propTypes = {        
+    //     inSubmit: PropTypes.func.isRequired
+    // };
     constructor(props) {
         super(props);
         this.initialState = {
@@ -37,7 +34,7 @@ class CreatePost extends Component {
     }
 
     handlePostChange(event) {
-        const content = filter.clean(event.target.value);
+        const content = this.filter.clean(event.target.value);
         this.setState(() => {
             return {
                 content,
@@ -54,6 +51,7 @@ class CreatePost extends Component {
     }
 
     handleSubmit(e) {
+        e.preventDefault();
         if (!this.state.valid) {
             return;
         }

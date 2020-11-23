@@ -49,10 +49,10 @@
             "./test/setup.js"
         ],
         "transform": {
-          "^.+\\.js?$": "babel-jest"
+            "^.+\\.js?$": "babel-jest"
         },
         "transformIgnorePatterns": [
-          "!node_modules/react-runtime"
+            "!node_modules/react-runtime"
         ],
         "globals": {
             "__DEV__": true,
@@ -108,6 +108,7 @@
     "devDependencies": {
         "@babel/core": "^7.12.3",
         "@babel/preset-env": "^7.12.1",
+        "@babel/preset-typescript": "^7.12.7",
         "autoprefixer": "^7.2.2",
         "babel-eslint": "^8.0.3",
         "babel-jest": "^21.2.0",

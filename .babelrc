@@ -23,7 +23,7 @@
                             "node": "current"
                         }
                     }
-                ]
+                ],
             ],
             "plugins": ["transform-class-properties"]
         }
