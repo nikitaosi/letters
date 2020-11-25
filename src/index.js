@@ -12,6 +12,8 @@ import SinglePost from './pages/post';
 import Login from './pages/login';
 import NotFound from './pages/404';
 
+import './store/exampleUse'
+
 import './shared/crash';
 import './shared/service-worker';
 import './shared/vendor';
