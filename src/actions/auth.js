@@ -1,5 +1,5 @@
 import * as types from '../constants/types';
-import { history } from '../history'
+import { history } from '../history/history'
 import { createError } from './error';
 import { loading, loaded } from './loading';
 import { getFirebaseUser, loginWithGithub, logUserOut, getFirebaseToken } from '../backend/auth'

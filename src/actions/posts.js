@@ -47,6 +47,7 @@ export function unlike(postId) {
         })
         .catch(err => dispatch(createError(err)));
     }
+}
 
 export function createNewPost(post) {
     return (dispatch, getState) => {
@@ -79,6 +80,7 @@ export function getPostsForPage(page = 'first') {
         .catch(err => dispatch(createError(err)));
     };
 }
+
 export function loadPost(postId) {
     return dispatch => {
         return API.fetchPost(postId)
@@ -89,5 +91,4 @@ export function loadPost(postId) {
         })
         .catch(err => dispatch(createError(err)));
     }
-}
 }

@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import parseLinkHeader from 'parse-link-header';
+import { connect } from 'react-redux';
 import orderBy from 'lodash/orderBy';
+import { createError } from '../actions/error';
+import { createNewPost, getPostsForPage } from '../actions/posts';
+import { showComments } from '../actions/comments';
+import { bindActionCreators } from 'redux';
 
 import * as API from '../shared/http';
 import Ad from '../components/ad/Ad';
@@ -23,8 +28,11 @@ export class Home extends Component {
     }
 
     componentDidMount() {
-        this.getPosts();
+        this.props.actions.getPostsForPage();
     }   
+    componentDidCatch(err, info) {
+        this.props.actions.createError(err, info);
+    }
 
     getPosts() {
         API.fetchPosts(this.state.endpoint)
@@ -65,15 +73,19 @@ export class Home extends Component {
                 <div className="home">
                     {/* <Welcome key="welcome" /> */}
                     <div>
-                    <CreatePost onSubmit={this.createNewPost} />
-                        {this.state.posts.length && (
+                    <CreatePost onSubmit={this.props.actions.createNewPost} />
+                        {this.props.posts && (
                             <div className="posts">
-                                {this.state.posts.map(({ id }) => {
-                                    return <Post id={id} key={id} user={this.props.user} />;
-                                })}
+                                {this.props.posts.map(post => (
+                                    <Post 
+                                        key={post.id} 
+                                        post={post} 
+                                        openCommentsDrawer={this.props.actions.showComments}
+                                    />
+                                ))}
                             </div>
                         )}
-                        <button className="block" onClick={this.getPosts}>
+                        <button className="block" onClick={this.props.actions.getNextPageOfPosts}>
                             Load more posts
                         </button>
                     </div>
@@ -92,4 +104,24 @@ export class Home extends Component {
         }
 }
 
-export default Home;
+export const mapDispatchToProps = dispatch => {
+    return { 
+        actions: bindActionCreators(
+            {
+                createNewPost,
+                getPostsForPage,
+                showComments,
+                createError,
+                getNextPageOfPosts: getPostsForPage.bind(this, 'next')
+            }, 
+            dispatch
+        )
+    };
+};
+
+export const mapStateToProps = state => {
+    const posts = orderBy(state.postIds.map(postId => state.posts[postId]), 'date', 'desc');
+    return { posts };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

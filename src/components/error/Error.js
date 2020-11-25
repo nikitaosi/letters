@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 const ErrorMessage = ({ error }) => {
     return (
@@ -7,7 +8,7 @@ const ErrorMessage = ({ error }) => {
             <p>We're on it!</p>
             <pre>{error.toString()}</pre>
             <code>{error.stack || error.stacktrace || 'no error stack available'}</code>
-            <button className="block">
+            {/* <button className="block">
                 <a
                     href="https://github.com/react-in-action/letters-social/issues/new"
                     target="_blank"
@@ -15,8 +16,10 @@ const ErrorMessage = ({ error }) => {
                 >
                     Open an issue on Github
                 </a>
-            </button>
+            </button> */}
         </div>
     );
 };
-export default ErrorMessage;
+
+export const mapStateToProps = state => ({ error: state.error });
+export default connect(mapStateToProps)(ErrorMessage);
