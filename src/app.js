@@ -23,7 +23,7 @@ class App extends Component {
         }
         return (
             <div className="app">
-                <Nav handleLogout={() => logUserOut()} user={this.props.user} />
+                <Nav />
                 {this.props.loading ? (
                     <div className="loading">
                         <Loader />

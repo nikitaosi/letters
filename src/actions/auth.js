@@ -1,9 +1,17 @@
 import * as types from '../constants/types';
-import { history } from '../history/history'
+import { history } from '../history/history';
 import { createError } from './error';
 import { loading, loaded } from './loading';
-import { getFirebaseUser, loginWithGithub, logUserOut, getFirebaseToken } from '../backend/auth'
+import * as API from '../shared/http';
+import { getFirebaseUser, loginWithGithub, logUserOut, getFirebaseToken } from '../backend/auth';
 
+/**
+ * Handles the user logging in
+ * @method loginSuccess
+ * @param  {object}     user  user object from Firebase
+ * @param  {string}     token firebase token, used for SSR
+ * @return {object}
+ */
 export function loginSuccess(user, token) {
     return {
         type: types.auth.LOGIN_SUCCESS,
@@ -12,24 +20,39 @@ export function loginSuccess(user, token) {
     };
 }
 
+/**
+ * Handles logout
+ * @method logoutSuccess
+ * @return {object}
+ */
 export function logoutSuccess() {
     return {
         type: types.auth.LOGOUT_SUCCESS
     };
 }
 
+/**
+ * Logs a user out
+ * @method logout
+ * @return {object}
+ */
 export function logout() {
     return dispatch => {
         return logUserOut()
-        .then(() => {
-            history.push('/login');
-            dispatch(logoutSuccess());
-            window.Raven.setUserContext();
-        })
-        .catch(err => dispatch(createError(err)));
-    }
+            .then(() => {
+                history.push('/login');
+                dispatch(logoutSuccess());
+                window.Raven.setUserContext();
+            })
+            .catch(err => dispatch(createError(err)));
+    };
 }
 
+/**
+ * Logs a user in
+ * @method login
+ * @return {object}
+ */
 export function login() {
     return dispatch => {
         return loginWithGithub().then(async () => {

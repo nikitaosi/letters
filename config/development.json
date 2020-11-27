@@ -4,7 +4,8 @@
     "CLIENT": "http://localhost:3000",
     "NODE_ENV": "development",
     "RIA_SENTRY_APP": "https://23f0e00b78a24ac88450c8261b59ed7c@sentry.io/212515",
-    "GOOGLE_API_KEY": "AIzaSyDBosKGKi-BI9Z8vftAwkBRQlSDDNE8PvM",
-    "FIREBASE_AUTH_DOMAIN": "letters-social.firebaseapp.com",
+    "GOOGLE_API_KEY": "AIzaSyD8x4v6Nf6etAN1buVBjJtdCtzR4F9lme0",
+    "FIREBASE_AUTH_DOMAIN": "letters-6de77.firebaseapp.com",
+    "LETTERS_FIREBASE_ADMIN_KEY": "AIzaSyD8x4v6Nf6etAN1buVBjJtdCtzR4F9lme0",
     "MAPBOX_API_TOKEN": "pk.eyJ1IjoiMHNpIiwiYSI6ImNraG9uZzJiNjAybWwzMW1namRqbm9oYXIifQ.vMRtQY-4naTLBj1cvmDw6Q"
 }

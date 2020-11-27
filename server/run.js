@@ -36,11 +36,11 @@ function onError(error) {
     switch (error.code) {
         case 'EACCES':
             console.error(`${bind} requires elevated privileges`);
-            process.extest(1);
+            // process.extest(1);
             break;
         case 'EADDRINUSE':
             console.error(`${bind} is already in use`);
-            process.extest(1);
+            // process.extest(1);
             break;
         default:
             throw error;

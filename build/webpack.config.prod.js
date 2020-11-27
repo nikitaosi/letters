@@ -14,6 +14,7 @@ const GLOBALS = {
         ENDPOINT: JSON.stringify(config.get('ENDPOINT')),
         RIA_SENTRY_APP: JSON.stringify(config.get('RIA_SENTRY_APP')),
         GOOGLE_API_KEY: JSON.stringify(config.get('GOOGLE_API_KEY')),
+        LETTERS_FIREBASE_ADMIN_KEY: JSON.stringify(config.get('LETTERS_FIREBASE_ADMIN_KEY')),
         FIREBASE_AUTH_DOMAIN: JSON.stringify(config.get('FIREBASE_AUTH_DOMAIN')),
         MAPBOX_API_TOKEN: JSON.stringify(config.get('MAPBOX_API_TOKEN'))
     }

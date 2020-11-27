@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import parseLinkHeader from 'parse-link-header';
 import { connect } from 'react-redux';
 import orderBy from 'lodash/orderBy';
 import { createError } from '../actions/error';
